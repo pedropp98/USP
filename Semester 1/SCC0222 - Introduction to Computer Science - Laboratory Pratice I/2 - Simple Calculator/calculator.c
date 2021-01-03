@@ -13,9 +13,7 @@ int main(void){
 
 double operation(double n1, double n2, int op){
     double result;
-    
     switch(op){
-    
     case 37:
         result = ((n1 * 1.0) / (n2 * 1.0)) * 100;
         break;
