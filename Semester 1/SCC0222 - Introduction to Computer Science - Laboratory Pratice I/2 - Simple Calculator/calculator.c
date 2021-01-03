@@ -1,19 +1,21 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-double operation(double, int);
+double operation(double, double, int);
 
 int main(void){
-    double a, b;
-    int op;
-    scanf("%lf %d %lf", &a, &op, &b);
-    printf("%lf", operation(a, b, op));
+    double number1, number2;
+    char op;
+    scanf("%lf %c %lf", &number1, &op, &number2);
+    printf("%lf\n", operation(number1, number2, op));
     return 0;
 }
 
 double operation(double n1, double n2, int op){
     double result;
+    
     switch(op){
+    
     case 37:
         result = ((n1 * 1.0) / (n2 * 1.0)) * 100;
         break;
