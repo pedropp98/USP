@@ -26,6 +26,7 @@ int main(void){
         }
         else{
             printf("Fim de jogo! O jogador O venceu!\n");
+            break;
         }
         finish = is_finished(board);
         // Player 2
@@ -38,6 +39,7 @@ int main(void){
         }
         else{
             printf("Fim de jogo! O jogador X venceu!\n");
+            break;
         }
     }
     if(count == 9){
