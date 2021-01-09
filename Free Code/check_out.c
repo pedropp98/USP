@@ -11,7 +11,6 @@ typedef enum boolean{
 }boolean_t;
 
 char *readline(FILE*);
-int string_compare(char*, char*);
 
 int main(void){
     char *file_out = readline(stdin);
@@ -57,19 +56,4 @@ char *readline(FILE *in){
     string[pos-1] = 0;
     string = (char*)realloc(string, pos * sizeof(char));
     return string;
-}
-
-int string_compare(char *str1, char *str2){
-    int size1 = strlen(str1), size2 = strlen(str2);
-    for(int i = 0; i < size1 and i < size2; i++){
-        if(str1[i] > str2[i])
-            return 1;
-        else if(str1[i] < str2[i])
-            return -1;
-    }
-    if(size1 > size2)
-        return 1;
-    else if(size1 < size2)
-        return -1;
-    return 0;
 }
