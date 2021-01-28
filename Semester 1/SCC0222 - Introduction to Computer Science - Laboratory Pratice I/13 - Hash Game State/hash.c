@@ -1,21 +1,21 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+// Defining macros used in the program
 #define and &&
 #define or ||
-
 #define BOARD_SIZE 3
 
+// Function deifinition
 char **read_board(FILE*);
 int check_played_positions(char**);
 int check_state(char**);
 void free_board(char**);
 
+// Main function
 int main(void){
     char **board = read_board(stdin);
-
     int state = check_state(board);
-
     if(state == 1)
         printf("empate\n");
     else if(state == 0)
@@ -26,20 +26,21 @@ int main(void){
     return 0;
 }
 
+// Reads the entire board from stdin and returns it as a char**
 char **read_board(FILE *in){
-    char **string = (char**)malloc(BOARD_SIZE * sizeof(char*));
+    char **string = (char**)malloc(BOARD_SIZE * sizeof(char*)); // Allocates BOARD_SIZE(3) * 8 bytes in heap memory
     for(int i = 0; i < BOARD_SIZE; i++){
-        string[i] = (char*)malloc(BOARD_SIZE * sizeof(char));
+        string[i] = (char*)malloc(BOARD_SIZE * sizeof(char)); // Allocates BOARD_SIZE(3) * 1 bytes in heap memory
         for(int j = 0; j < BOARD_SIZE; j++){
-            scanf("%c", &string[i][j]);
-            getchar();
-            // printf("%c %d\n", string[i][j], string[i][j]);
+            scanf("%c", &string[i][j]); // Reads a char from stdin and stores it
+            getchar(); // Reads the space character
         }
-        getchar();
+        getchar(); // Reads the break line character
     }
     return string;
 }
 
+// Counts how many moves was made until that point in the game
 int check_played_positions(char **board){
     int played = 0;
     for(int i = 0; i < BOARD_SIZE; i++){
@@ -51,6 +52,7 @@ int check_played_positions(char **board){
     return played;
 }
 
+// It will check if there's a winner. If so, it returns the specific character from the player as an integer. If it was a tie, it returns 1, if the game is not yet finished it returns 0
 int check_state(char **board){
     for(int i = 0, j = 0; i < (BOARD_SIZE); i++){
         if((board[i][j] == board[i][j+1] && board[i][j] == board[i][j+2]) and board[i][j] != 45)
@@ -74,6 +76,7 @@ int check_state(char **board){
     return 0;
 }
 
+// Deallocates memory allocated for the board
 void free_board(char **board){
     for(int i = 0; i < BOARD_SIZE; i++){
         free(board[i]);
