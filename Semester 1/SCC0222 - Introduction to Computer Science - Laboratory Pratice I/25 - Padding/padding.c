@@ -1,17 +1,20 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+// Creating a new type images_t to store the information
 typedef struct images{
     int height, width;
     int **pixels;
 }images_t;
 
+// Function definition
 images_t *create_image();
 void read_image(images_t*);
 images_t *input_padding(images_t*, int);
 void print_image(images_t*);
 void erase_image(images_t*);
 
+// Main function
 int main(void){
     int height, width, padding;
     scanf("%d %d", &width, &height);
@@ -27,6 +30,7 @@ int main(void){
     return 0;
 }
 
+// Allocates memory for an imagea_t and its members
 images_t *create_image(int height, int width){
     images_t *img = (images_t*)malloc(sizeof(images_t));
     img->height = height;
@@ -38,6 +42,7 @@ images_t *create_image(int height, int width){
     return img;
 }
 
+// Reads img.height * img.width integers from stdin and stores them into img
 void read_image(images_t *img){
     for(int i = 0; i < img->height; i++){
         for(int j = 0; j < img->width; j++){
@@ -46,6 +51,7 @@ void read_image(images_t *img){
     }
 }
 
+// Creates a new image, equals the original one, but with padding of size padding
 images_t *input_padding(images_t *img, int padding){
     int double_padding = padding * 2;
     images_t *img_padding = create_image(double_padding + img->height, double_padding + img->width);
@@ -57,6 +63,7 @@ images_t *input_padding(images_t *img, int padding){
     return img_padding;
 }
 
+// Deallocates memory allocated for an images_t
 void erase_image(images_t *image){
     for(int i = 0; i < image->height; i++){
         free(image->pixels[i]);
@@ -65,8 +72,8 @@ void erase_image(images_t *image){
     free(image);
 }
 
+// Prints the pixels stored in the img
 void print_image(images_t *img){
-    // printf("h: %d w: %d\n", img->height, img->width);
     for(int i = 0; i < img->height; i++){
         for(int j = 0; j < img->width; j++){
             printf("%d ", img->pixels[i][j]);
