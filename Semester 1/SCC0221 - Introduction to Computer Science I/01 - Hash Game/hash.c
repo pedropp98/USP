@@ -1,14 +1,17 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+// Defining macro named BOARD_SIZE, that defines the size of the board used in the game
 #define BOARD_SIZE 3
 
+// Function definition
 char *create_board(int);
 int change_board(char*, int, int);
 int is_finished(char*);
 void player_turn(char*, int);
 void print_board(char*);
 
+// Main function
 int main(void){
     char *board = create_board(BOARD_SIZE);
     print_board(board);
@@ -49,6 +52,15 @@ int main(void){
     return 0;
 }
 
+/*
+Creates a square board like the one below:
+1   |2   |3   |
+----+----+-----
+4   |5   |6   |
+----+----+----+
+7   |8   |9   |
+----+----+-----
+*/
 char *create_board(int size){
     int square_size = size * size;
     char *board = (char*)calloc(square_size, sizeof(char));
@@ -57,8 +69,10 @@ char *create_board(int size){
     return board;
 }
 
+// Checks if a certain position is already occupied by a player (X or O), if so, it prints a text telling it was not a valid movement and returns 0. If it's not occupied by a player, then it changes the value of that position to the one that correponds to the player ASCII value
+// It also does not allow an invalid position, which would be anything smaler than 0 or greater than 8
 int change_board(char *board, int position, int player){
-    if(board[position] != 88 & board[position] != 79){
+    if(board[position] != 88 & board[position] != 79 && position >= 0 && position <= 8){
         board[position] = player;
         return 1;
     }
@@ -68,6 +82,7 @@ int change_board(char *board, int position, int player){
     }
 }
 
+// Checks if the board is in a position which a player won, either be horizontally, vertically or diagonally. returns 1 if so, 0 otherwise
 int is_finished(char *board){
     for(int i = 0; i < (BOARD_SIZE * BOARD_SIZE); i += 3){
         if(board[i] == board[i+1] && board[i] == board[i+2])
@@ -85,6 +100,8 @@ int is_finished(char *board){
         return 0;
 }
 
+
+// Prints the board, so the players can see the current state of the game
 void print_board(char *board){
     for(int i = 0; i < (BOARD_SIZE * BOARD_SIZE); i++){
         printf("%c   |", board[i]);
@@ -98,6 +115,7 @@ void print_board(char *board){
     }
 }
 
+// Prints a message telling it's a player's turn and reads an integer from stdin until change_board function returns 1, which means it's a valid movement
 void player_turn(char *board, int player){
     printf("Escolha um número para jogar, jogador %c!\n", player);
     int position;
