@@ -2,6 +2,7 @@
 Acitivities developed during my undergraduation at University of São Paulo (2020 - present).
 
 This repository is divided by each Semester, and each semester is divided by each programming discipline taken. This repository looks forward to help freshman students that may encounter similar programs in their classes or just want to take a look and analise a little bit more of the programming logic used.
+any problem, question or mistake I may have done here, feel free to contact me.
 
 ## Semester 1 (February-June / 2020)
   #### [SCC0221 - Introduction to Computer Science I](https://github.com/pedrousp/USP/tree/main/Semester%201/SCC0221%20-%20Introduction%20to%20Computer%20Science%20I)
