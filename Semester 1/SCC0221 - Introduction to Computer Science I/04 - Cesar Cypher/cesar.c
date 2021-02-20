@@ -1,27 +1,27 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+// Defining macros to use in the program
 #define BUFFER 4096
-
 #define and &&
 #define or ||
 
-typedef int (__math_op__)(int, int);
+// Defning a pointer to function
+typedef int (*__math_op__)(int, int);
 
+// Function definition
 char *readline(FILE*);
 void cesar_cypher(char*, int, __math_op__);
 int encrypt(int, int);
 int decrypt(int, int);
 
+// Main function
 int main(void){
-    char *operation_input, *key_input;
-    operation_input = readline(stdin);
-    key_input = readline(stdin);
     int operation, key;
-    operation = atoi(operation_input);
-    key = atoi(key_input);
+    scanf("%d %d", &operation, &key);
+    while(getchar() != 10);
     char *input = readline(stdin);
-    // printf("%s\n", input);
+    // operation 1 realizes encrypts, operation 2 decrypts
     switch(operation){
         case 1:
             cesar_cypher(input, key, encrypt);
@@ -31,12 +31,14 @@ int main(void){
             break;
     }
     printf("%s\n", input);
+    // Deallocates memory allocated in the program
     free(input);
     free(operation_input);
     free(key_input);
     return 0;
 }
 
+// Reads a text line from a FILE*, stores every character in a char* and returns it as a string
 char *readline(FILE *in){
     char *string = NULL;
     int pos = 0, character;
@@ -52,12 +54,14 @@ char *readline(FILE *in){
     return string;
 }
 
+// Receives the message to be as a char* input, the key to be used and the pointer to function to either encrypts or decrypts the input char*
 void cesar_cypher(char *input, int key, __math_op__ function){
     for(int i = 0; input[i] != 0; i++){
         input[i] = function(input[i], key);
     }
 }
 
+// Encrypts each character using key
 int encrypt(int character, int key){
     int e = character + key;
     if(character >= 32 and character <= 64)
@@ -71,6 +75,7 @@ int encrypt(int character, int key){
     return e;
 }
 
+// Decrypts each character using the key
 int decrypt(int character, int key){
     int e = character - key;
     if(character >= 32 and character <= 64)
