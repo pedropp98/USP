@@ -1,17 +1,17 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+// Function definition
 void determinant(int**, int);
 
+// Main function
 int main(void){
     int lines, columns;
     scanf("%d %d", &lines, &columns);
-    if(lines < 1 || lines > 3 || columns < 1 || columns > 3){
+    if(lines < 1 || lines > 3 || columns < 1 || columns > 3)
         printf("Entradas invalidas!\n");
-    }
-    else if(lines != columns){
+    else if(lines != columns) // The determinant can only be calculated from square matrix
         printf("A matriz de entrada nao possui determinante!\n");
-    }
     else{
         int **matrix = (int**)malloc(lines * sizeof(int*));
         for(int i = 0; i < lines; i++){
@@ -30,6 +30,7 @@ int main(void){
     return 0;
 }
 
+// Calculates the determinant of a matrix of size * size
 void determinant(int **matrix, int size){
     int det;
     switch(size){
