@@ -14,5 +14,5 @@ any problem, question or mistake I may have done here, feel free to contact me.
 
 ## Semester 3 (April-July / 2021)
   #### SCC0215 - File Organization
-  #### SCC0216 Computational Modelling in Graphs
-  #### SSC0103 Object-Oriented Programming
+  #### SCC0216 - Computational Modelling in Graphs
+  #### SSC0103 - Object-Oriented Programming
