@@ -11,3 +11,8 @@ any problem, question or mistake I may have done here, feel free to contact me.
 ## Semester 2 (July-December / 2020)
   #### [SCC0201 - Introduction to Computer Science II](https://github.com/pedrousp/USP/tree/main/Semester%202/SCC0201%20-%20Introduction%20to%20Computer%20Science%20II)
   #### [SCC0202 - Algorithms and Data Structure I](https://github.com/pedrousp/USP/tree/main/Semester%202/SCC0202%20-%20Algorithms%20and%20Data%20Structure%20I)
+
+## Semester 3 (April-July / 2021)
+  #### SCC0215 - File Organization
+  #### SCC0216 Computational Modelling in Graphs
+  #### SSC0103 Object-Oriented Programming
