@@ -7,14 +7,12 @@ double sn_sum(long, long, long);
 
 // Main function
 int main(void){
-    long a1, common_difference, n, an;
-    double Sn;
+    long a1, common_difference, n, a_n;
     scanf("%ld %ld %ld", &a1, &common_difference, &n); // Reads 3 numbers from stdin
-    an = an_term(a1, common_difference, n); // Gets the result from an_term function
-    Sn = sn_sum(a1, an, n); // Gets the result from sn-sum function
+    a_n = an_term(a1, common_difference, n); // Gets the result from an_term function
     // Prints the result
-    printf("%ld\n", an);
-    printf("%.0lf\n", Sn);
+    printf("%ld\n", a_n);
+    printf("%.0lf\n", sn_sum(a1, a_n, n)); // Gets the result from sn_sum function and prints it
     return 0;
 }
 
