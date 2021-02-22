@@ -1,141 +1,123 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<ctype.h>
 
-int inputPalavra(FILE* in){
-    int input;
-    input = getc(stdin);
-    if(input > 64 && input < 91) input += 32;
-    return input;
-}
+#define BUFFER 4096
+#define and &&
+#define or ||
 
-int maiorTamanho(int p1, int p2){
-    if(p1 > p2) return 1;
-    else if(p2 > p1) return 2;
-    else return 0;
-}
+char *readline(FILE*);
+int stringcompare(const char*, const char*);
+int stringlen(const char*);
+int biggest(int, int);
+int sum(const char*);
+int repetitions(const char*, const char);
+int appearance(const char*, const char);
+void run(const char*, const char*, const int);
 
-int ordemAlfabetica(char* p1, char* p2){
-
-    int i = 0;
-
-    while(p1[i] == p2[i] && p1[i] != '\n' && p1[i] != EOF && p2[i] != '\n' && p2[i] != EOF){
-                                                                                            
-                                                                                            
-        i++;
-    }
-    if(p1[i] < p2[i]) return 1;
-                            
-    else if(p2[i] < p1[i]) return 2;
-                                    
-    else return 0;
-}
-
-int maiorSoma(char* p1, char* p2){
-
-    int i = 0, size1 = 0, size2 = 0;
-
-    do{
-        size1 += (p1[i++] - 97);
-    }while(p1[i-1] != '\n' && p1[i-1] != EOF);
-    i = 0;
-
-    do{
-        size2 += (p2[i++] - 97);
-    }while(p2[i-1] != '\n' && p2[i-1] != EOF);
-
-    if(size1 > size2) return 1;
-    else if(size2 > size1) return 2;
-    else return 0;
-}
-
-int repeticoesLetra(char* p1, char* p2){
-    int i = 0, size1 = 0, size2 = 0;
-    int letra = inputPalavra(stdin);
-    do{
-        if(p1[i] == letra) size1++;
-        i++;
-    }while(p1[i-1] != '\n' && p1[i-1] != EOF);
-    i = 0;
-    do{
-        if(p2[i] == letra) size2++;
-        i++;
-    }while(p2[i-1] != '\n' && p2[i-1] != EOF);
-
-    if(size1 > size2) return 1;
-    else if(size2 > size1) return 2;
-    else return 0;
-}
-
-int primeiroLetra(char* p1, char* p2){
-
-    int i = 0, size1 = 0, size2 = 0;
-    int letra = inputPalavra(stdin);
-                                    
-    do{
-        i++;
-    }while(p1[i-1] != letra && (p1[i-1] != '\n' && p1[i-1] != EOF));
-                                                                    
-
-    if(p1[i-1] == '\n' || p1[i-1] == EOF) size1 = 0;
-    else size1 = i;
-    i = 0;
-
-    do{
-        i++;
-    }while(p2[i-1] != letra && (p2[i-1] != '\n' && p2[i-1] != EOF));
-                                                                    
-
-    if(p2[i-1] == '\n' || p2[i-1] == EOF) size2 = 0;
-    else size2 = i;
-
-    if(size1 < size2) return 1;
-    else if(size2 < size1) return 2;
-    else return 0;
-}
-
-int main(int argc, char** argv){
-
-    int op, result, p1Length = 0, p2Length = 0;
-    char* p1 = NULL,* p2 = NULL;
-
-    scanf("%d [^\n]", &op);
-
-
-    do{
-        p1 = (char*)realloc(p1, p1Length + 1);
-        p1[p1Length] = inputPalavra(stdin);
-        p1Length++;
-    }while(p1[p1Length-1] != '\n' && p1[p1Length-1] != EOF);
-                                                            
-                                                            
-
-
-    do{
-        p2 = (char*)realloc(p2, p2Length + 1);
-        p2[p2Length++] = inputPalavra(stdin);
-    }while(p2[p2Length-1] != '\n' && p2[p2Length-1] != EOF);
-                                                            
-    switch(op){
-    case 1:
-        result = maiorTamanho(p1Length, p2Length);
-        break;
-    case 2:
-        result = ordemAlfabetica(p1, p2);
-        break;
-    case 3:
-        result = maiorSoma(p1, p2);
-        break;
-    case 4:
-        result = repeticoesLetra(p1, p2);
-        break;
-    case 5:
-        result = primeiroLetra(p1, p2);
-        break;
-    default:
-        break;
-    }
-    free(p1);
-    free(p2);
-    printf("%d\n", result);
+int main(void){
+    int operation;
+    scanf("%d", &operation);
+    while(getchar() != 10);
+    char *word1 = readline(stdin), *word2 = readline(stdin);
+    run(word1, word2, operation);
+    free(word1);
+    free(word2);
     return 0;
+}
+
+void run(const char *WORD1, const char *WORD2, const int OPERATION){
+    char character;
+    switch(OPERATION){
+        case 1:
+            printf("%d\n", biggest(stringlen(WORD1), stringlen(WORD2)));
+            break;
+        case 2:
+            printf("%d\n", stringcompare(WORD1, WORD2));
+            break;
+        case 3:
+            printf("%d\n", biggest(sum(WORD1), sum(WORD2)));
+            break;
+        case 4:
+            character = fgetc(stdin);
+            printf("%d\n", biggest(repetitions(WORD1, character), repetitions(WORD2, character)));
+            break;
+        case 5:
+            character = fgetc(stdin);
+            if(appearance(WORD1, character) > appearance(WORD2, character))
+                printf("2\n");
+            else if(appearance(WORD1, character) < appearance(WORD2, character))
+                printf("1\n");
+            else
+                printf("0\n");
+            break;
+    }
+}
+
+char *readline(FILE *in){
+    char *string = NULL;
+    int pos = 0, character;
+    do{
+        if(pos % BUFFER == 0)
+            string = (char*)realloc(string, (pos / BUFFER + 1) * BUFFER * sizeof(char));
+        character = fgetc(in);
+        if(character != 13)
+            string[pos++] = character;
+    }while(character != 10 and !feof(in));
+    string[pos-1] = 0;
+    string = (char*)realloc(string, pos * sizeof(char));
+    return string;
+}
+
+int stringcompare(const char *STR1, const char *STR2){
+    for(; *STR1 != 0 and *STR2 != 0; STR1++, STR2++){
+        if(tolower(*STR1) > tolower(*STR2))
+            return 1;
+        if(tolower(*STR1) < tolower(*STR2))
+            return 2;
+    }
+    int size1 = stringlen(STR1), size2 = stringlen(STR2);
+    if(size1 > size2)
+        return 2;
+    if(size1 < size2)
+        return 1;
+    return 0;
+}
+
+int stringlen(const char *STRING){
+    int size = 0;
+    for(; STRING[size] != 0; size++);
+    return size;
+}
+
+int sum(const char *STR){
+    int sum = 0;
+    for(; *STR != 0; STR++)
+        sum += (tolower(*STR) - 97);
+    return sum;
+}
+
+int biggest(int integer1, int integer2){
+    if(integer1 > integer2)
+        return 1;
+    if(integer1 < integer2)
+        return 2;
+    return 0;
+}
+
+int repetitions(const char *STR, const char character){
+    int count = 0;
+    for(; *STR != 0; STR++){
+        if(tolower(*STR) == tolower(character))
+            count++;
+    }
+    return count;
+}
+
+int appearance(const char *STR, const char character){
+    int pos = 0;
+    for(; STR[pos] != 0; pos++)
+        if(tolower(STR[pos]) == tolower(character))
+            return pos;
+    return -1;
 }
