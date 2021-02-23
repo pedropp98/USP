@@ -16,8 +16,7 @@ int main(void){
 // Exponent function makes a to the power of b and returns this value
 double exponent(double a, double b){
     int e = 1;
-    for(int i = 0; i < b; i++){
+    for(int i = 0; i < b; i++)
         e *= a;
-    }
     return e;
 }
