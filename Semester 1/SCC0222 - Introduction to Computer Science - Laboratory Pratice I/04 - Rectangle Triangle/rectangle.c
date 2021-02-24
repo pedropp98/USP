@@ -22,7 +22,7 @@ int main(void){
 
 //Function definition
 // Bubblesort is a sorting function. It sorts an array in ascending order
-void bubblesort(int *array){
+void bubblesort(int *array){  // As I'm sorting an array to check a triangle, I'm only receiving the array, 'cause the amount of items will be always 3
     int copy;
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
