@@ -1,8 +1,26 @@
-# USP
-Acitivities developed during my undergraduation at University of São Paulo (2020 - present).
+<h1 align = "center">
+<!-- # [USP - University of São Paulo](https://www5.usp.br/) -->
+<!-- Acitivities developed during my undergraduation at University of São Paulo (2020 - present). -->
+  <a href = "https://www5.usp.br/" alt = "University of São Paulo">USP - University of São Paulo</a>
+</h1>
 
-This repository is divided by each Semester, and each semester is divided by each programming discipline taken. This repository looks forward to help freshman students that may encounter similar programs in their classes or just want to take a look and analise a little bit more of the programming logic used.
-any problem, question or mistake I may have done here, feel free to contact me.
+<p align = "center">
+  <a href = '#about'>About</a>
+  <a href = '#how-it-works'>How it works</a>
+  <a href = '#table-of-contents'>Table of contents</a>
+  <a href = '#how-to-contribute'>How to contribute</a>
+</p>
+
+## About
+
+This repository is divided by each Semester, and each semester is divided by each programming discipline taken. This repository looks forward to help students that may encounter similar programs in their classes or just want to take a look and analise a little bit more of my own programming logic.
+Any problem, question or mistake I may have done here, feel free to contact me.
+
+## How it works
+
+## Table of contents
+
+## How to contribute
 
 ## Semester 1 (February-June / 2020)
   #### [SCC0221 - Introduction to Computer Science I](https://github.com/pedrousp/USP/tree/main/Semester%201/SCC0221%20-%20Introduction%20to%20Computer%20Science%20I)
